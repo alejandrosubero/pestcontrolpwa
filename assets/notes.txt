@@ -1,0 +1,32 @@
+# Compilar en modo dev (debe levantar sin errores)
+
+ng serve
+
+# En otro terminal, verificar que Tailwind procesa clases:
+# → Abre http://localhost:4200
+# → Debe verse fondo negro con emoji 🐛 y texto verde
+
+# Verificar que el SW está registrado (build de producción):
+
+ng build
+
+npx http-server dist/pest-control-pwa/browser -p 8085
+
+# → Abre http://localhost:8085
+
+# → En DevTools > Application > Service Workers: debe aparecer "ngsw-worker.js"
+
+# Build optimizado con SW activado
+ng build --configuration production
+
+
+# Verificar que el SW se generó
+ls dist/pest-control-pwa/
+# → debe incluir ngsw-worker.js y ngsw.json
+
+# Opción A: http-server con SSL autofirmado
+
+npx http-server dist/pest-control-pwa/browser -p 8085 --ssl
+
+# Opción B: serve (más simple)
+npx serve dist/pest-control-pwa -p 8080
